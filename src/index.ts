@@ -2,14 +2,18 @@ import { CheerioCrawler } from "crawlee";
 
 export const scrapeNext = async () => {
   try {
-    const nepseUrl = "https://www.sharesansar.com/";
+    const nepseUrl = "https://merolagani.com/latestmarket.aspx";
     let numericValue: number = 0;
     const crawler = new CheerioCrawler({
       async requestHandler({ request, $, _, log }) {
-        const nepseValue = $("#tag-id").text().trim();
-        log.info(nepseValue);
-        console.log(nepseValue);
-        numericValue = parseFloat(nepseValue.replace(/,/g, ""));
+        // const nepseValue = $(
+        //   "#index-slider .list-item:nth-of-type(1) span:nth-of-type(2)"
+        // )
+        //   .text()
+        //   .trim();
+        const html = $("body").html();
+        console.log("html:::::::", html);
+        // numericValue = parseFloat(nepseValue.replace(/,/g, ""));
       },
     });
 
