@@ -7,6 +7,8 @@ export const scrapeNext = async () => {
     const crawler = new CheerioCrawler({
       async requestHandler({ request, $, _, log }) {
         const nepseValue = $("#tag-id").text().trim();
+        log.info(nepseValue);
+        console.log(nepseValue);
         numericValue = parseFloat(nepseValue.replace(/,/g, ""));
       },
     });

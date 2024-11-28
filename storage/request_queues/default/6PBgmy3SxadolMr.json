@@ -1,9 +1,0 @@
-{
-	"id": "6PBgmy3SxadolMr",
-	"json": "{\"id\":\"6PBgmy3SxadolMr\",\"url\":\"https://www.sharesansar.com/\",\"loadedUrl\":\"https://www.sharesansar.com/\",\"uniqueKey\":\"https://www.sharesansar.com\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-11-28T00:36:18.830Z\"}",
-	"method": "GET",
-	"orderNo": null,
-	"retryCount": 0,
-	"uniqueKey": "https://www.sharesansar.com",
-	"url": "https://www.sharesansar.com/"
-}
