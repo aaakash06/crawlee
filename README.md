@@ -21,3 +21,15 @@ npm install yarn
 mv Dockerfile Dockerfile.bak
 mv Dockerfile.bak Dockerfile
 ```
+
+# remove docker image
+
+```
+docker rmi image_id
+```
+
+# remove docker container
+
+```
+docker rm/remove container_id
+```
