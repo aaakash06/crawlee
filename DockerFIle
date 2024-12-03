@@ -8,7 +8,9 @@ WORKDIR /usr/src/app
 COPY package.json .
 COPY . .
 
-RUN yarn 
+RUN npm install -g yarn
+
+RUN yarn  
 
 EXPOSE 3000
 
