@@ -33,3 +33,11 @@ docker rmi image_id
 ```
 docker rm/remove container_id
 ```
+
+# rename docker image
+
+```
+docker image tag old_image_id new_image_id
+
+docker image tag sharepali:node aaakash06/sharepali:node
+```
