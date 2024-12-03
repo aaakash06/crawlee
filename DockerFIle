@@ -1,6 +1,9 @@
 FROM node:20-alpine
 
-WORKDIR /app
+#install playwright
+RUN npx playwright install
+
+WORKDIR /src
 
 COPY package.json .
 COPY . .
