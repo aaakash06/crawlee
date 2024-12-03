@@ -18,10 +18,8 @@ export const scrapeNext = async () => {
     });
 
     await crawler.run([nepseUrl]);
-    console.log(nepseValue, percentChange);
+    return { nepseValue, percentChange };
   } catch (error) {
     console.error("Error scraping NEPSE index:", error);
   }
 };
-
-scrapeNext();
