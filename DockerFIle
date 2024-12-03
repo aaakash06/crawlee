@@ -11,8 +11,8 @@ COPY package.json .
 COPY . .
 
 RUN npm install -g yarn
-
-RUN yarn  
+RUN yarn
+RUN npx playwright install --with-deps
 
 EXPOSE 3000
 
