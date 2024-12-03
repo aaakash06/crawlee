@@ -2,9 +2,9 @@
   "name": "crawlee",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api.js",
   "scripts": {
-    "start": "npx tsc -b && node dist/index.js",
+    "start": "npx tsc -b && node dist/api.js",
     "build": "npx tsc -b",
     "dev": "node dist/api.js"
   },
