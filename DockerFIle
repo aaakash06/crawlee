@@ -3,11 +3,13 @@ FROM node:20-alpine
 #install playwright
 RUN npx playwright install
 
-WORKDIR /src
+WORKDIR /usr/src/app
 
 COPY package.json .
 COPY . .
 
 RUN yarn 
 
-CMD ["yarn", "dev"]
+EXPOSE 3000
+
+CMD ["yarn", "start"] 
