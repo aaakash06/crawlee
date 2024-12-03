@@ -5,6 +5,8 @@ RUN apt-get update && \
     apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libxkbcommon0 libx11-xcb1 libxcb-dri3-0 libxss1 libxtst6 libgtk-3-0 && \
     rm -rf /var/lib/apt/lists/*
 
+RUN npx playwright install --with-deps
+
 WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
@@ -12,7 +14,7 @@ COPY package.json yarn.lock ./
 RUN npm install yarn
 
 RUN yarn
-RUN npx playwright install --with-deps
+
 COPY . .
 
 EXPOSE 3000
