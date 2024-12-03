@@ -10,6 +10,8 @@ WORKDIR /usr/src/app
 COPY package.json .
 COPY . .
 
+RUN npx tsc --init
+
 RUN npm install yarn
 
 RUN yarn
