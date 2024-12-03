@@ -10,8 +10,10 @@ WORKDIR /usr/src/app
 COPY package.json .
 COPY . .
 
-RUN npm install -g yarn
+RUN npm install yarn
+
 RUN yarn
+
 RUN npx playwright install --with-deps
 
 EXPOSE 3000
