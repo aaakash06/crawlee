@@ -2,6 +2,10 @@ import { PlaywrightCrawler } from "crawlee";
 
 let singleton: PlaywrightCrawler | null = null;
 
+declare const globalThis: {
+  PlaywrightCrawler: PlaywrightCrawler;
+} & typeof global;
+
 const getCrawler = () => {
   if (!singleton) {
     singleton = new PlaywrightCrawler({
