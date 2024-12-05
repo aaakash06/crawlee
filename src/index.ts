@@ -1,27 +1,45 @@
 import { PlaywrightCrawler } from "crawlee";
 
-let singleTon: PlaywrightCrawler | null = null;
+let singleton: PlaywrightCrawler | null = null;
 
-export const scrapeNext = async () => {
-  try {
-    const nepseUrl = "https://merolagani.com/latestmarket.aspx";
-    let nepseValue: number = 0;
-    let percentChange: number = 0;
-    const crawler = new PlaywrightCrawler({
-      async requestHandler({ request, page, enqueueLinks, log }) {
+const getCrawler = () => {
+  if (!singleton) {
+    singleton = new PlaywrightCrawler({
+      async requestHandler({ page }) {
         const ul = await page.waitForSelector("#index-slider");
         const li = await ul?.waitForSelector(".list-item");
         const span = await li?.waitForSelector("span");
         const text = await span?.textContent();
-        console.log("text:::::::", text);
-        nepseValue = parseFloat(text!.replace(/,/g, ""));
-        percentChange = parseFloat(text!.split("  ")[1]);
+
+        if (!text) throw new Error("Failed to get text content");
+
+        return {
+          nepseValue: parseFloat(text.replace(/,/g, "")),
+          percentChange: parseFloat(text.split("  ")[1]),
+        };
       },
+    });
+  }
+  return singleton;
+};
+
+export const scrapeNext = async () => {
+  try {
+    const nepseUrl = "https://merolagani.com/latestmarket.aspx";
+    const crawler = getCrawler();
+
+    let result: { nepseValue: number; percentChange: number } | null = null;
+
+    crawler.router.addDefaultHandler(async (context) => {
+      result = await crawler.options.requestHandler!(context);
     });
 
     await crawler.run([nepseUrl]);
-    return { nepseValue, percentChange };
+
+    if (!result) throw new Error("Failed to scrape data");
+    return result;
   } catch (error) {
     console.error("Error scraping NEPSE index:", error);
+    return { nepseValue: null, percentChange: null };
   }
 };
