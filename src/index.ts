@@ -1,49 +1,41 @@
-// import { PlaywrightCrawler } from "crawlee";
+import { PlaywrightCrawler } from "crawlee";
 
-// let singleton: PlaywrightCrawler | null = null;
+let nepseValue: number = 0;
+let percentChange: number = 0;
 
-// declare const globalThis: {
-//   PlaywrightCrawler: PlaywrightCrawler;
-// } & typeof global;
+let singleton: PlaywrightCrawler | null = null;
 
-// const getCrawler = () => {
-//   if (!singleton) {
-//     singleton = new PlaywrightCrawler({
-//       async requestHandler({ page }) {
-//         const ul = await page.waitForSelector("#index-slider");
-//         const li = await ul?.waitForSelector(".list-item");
-//         const span = await li?.waitForSelector("span");
-//         const text = await span?.textContent();
+declare const globalThis: {
+  PlaywrightCrawler: PlaywrightCrawler;
+} & typeof global;
 
-//         if (!text) throw new Error("Failed to get text content");
+const getCrawler = () => {
+  if (!singleton) {
+    singleton = new PlaywrightCrawler({
+      async requestHandler({ page }) {
+        const ul = await page.waitForSelector("#index-slider");
+        const li = await ul?.waitForSelector(".list-item");
+        const span = await li?.waitForSelector("span");
+        const text = await span?.textContent();
 
-//         return {
-//           nepseValue: parseFloat(text.replace(/,/g, "")),
-//           percentChange: parseFloat(text.split("  ")[1]),
-//         };
-//       },
-//     });
-//   }
-//   return singleton;
-// };
+        if (!text) throw new Error("Failed to get text content");
 
-// export const scrapeNext = async () => {
-//   try {
-//     const nepseUrl = "https://merolagani.com/latestmarket.aspx";
-//     const crawler = getCrawler();
+        nepseValue = parseFloat(text.replace(/,/g, ""));
+        percentChange = parseFloat(text.split("  ")[1]);
+      },
+    });
+  }
+  return singleton;
+};
 
-//     let result: { nepseValue: number; percentChange: number } | null = null;
-
-//     crawler.router.addDefaultHandler(async (context) => {
-//       result = await crawler.options.requestHandler!(context);
-//     });
-
-//     await crawler.run([nepseUrl]);
-
-//     if (!result) throw new Error("Failed to scrape data");
-//     return result;
-//   } catch (error) {
-//     console.error("Error scraping NEPSE index:", error);
-//     return { nepseValue: null, percentChange: null };
-//   }
-// };
+export const scrapeNext = async () => {
+  try {
+    const nepseUrl = "https://merolagani.com/latestmarket.aspx";
+    const crawler = getCrawler();
+    await crawler.run([nepseUrl]);
+    return { nepseValue, percentChange };
+  } catch (error) {
+    console.error("Error scraping NEPSE index:", error);
+    return { nepseValue: null, percentChange: null };
+  }
+};
