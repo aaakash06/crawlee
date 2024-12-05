@@ -30,7 +30,8 @@ export const scrapeNext = async () => {
   try {
     const nepseUrl = "https://merolagani.com/latestmarket.aspx";
     const crawler = getCrawler();
-    await crawler.run([nepseUrl]);
+    crawler.addRequests([{ url: nepseUrl }]);
+    await crawler.run();
     return { nepseValue, percentChange };
   } catch (error) {
     console.error("Error scraping NEPSE index:", error);
