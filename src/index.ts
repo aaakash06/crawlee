@@ -1,5 +1,7 @@
 import { PlaywrightCrawler } from "crawlee";
 
+let singleTon: PlaywrightCrawler | null = null;
+
 export const scrapeNext = async () => {
   try {
     const nepseUrl = "https://merolagani.com/latestmarket.aspx";
