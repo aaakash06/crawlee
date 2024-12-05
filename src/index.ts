@@ -3,15 +3,13 @@ import { PlaywrightCrawler } from "crawlee";
 let nepseValue: number = 0;
 let percentChange: number = 0;
 
-let singleton: PlaywrightCrawler | null = null;
-
 declare const globalThis: {
   PlaywrightCrawler: PlaywrightCrawler;
 } & typeof global;
 
 const getCrawler = () => {
-  if (!singleton) {
-    singleton = new PlaywrightCrawler({
+  if (!globalThis.PlaywrightCrawler) {
+    globalThis.PlaywrightCrawler = new PlaywrightCrawler({
       async requestHandler({ page }) {
         const ul = await page.waitForSelector("#index-slider");
         const li = await ul?.waitForSelector(".list-item");
@@ -25,7 +23,7 @@ const getCrawler = () => {
       },
     });
   }
-  return singleton;
+  return globalThis.PlaywrightCrawler;
 };
 
 export const scrapeNext = async () => {
