@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { scrapeNext } from ".";
+import { scrapeNext } from "./scrape";
 
 const app = express();
 
