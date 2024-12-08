@@ -13,18 +13,25 @@ const crawler = new PlaywrightCrawler({
     const requests: NetworkRequest[] = [];
 
     // Monitor network requests
-    page.on("request", (request: Request) => {
-      requests.push({
-        url: request.url(),
-        method: request.method(),
-        resourceType: request.resourceType(),
-      });
-    });
-
+    page.on("request", (request) =>
+      console.log(">>", request.method(), request.url())
+    );
+    page.on("response", (response) =>
+      console.log("<<", response.status(), response.url())
+    );
+    console.log("done");
+    // page.on("request", (request: Request) => {
+    //   requests.push({
+    //     url: request.url(),
+    //     method: request.method(),
+    //     resourceType: request.resourceType(),
+    //   });
+    // });
     // Wait for network idle to ensure we capture most requests
-    await page.goto(page.url(), { waitUntil: "networkidle" });
+    // await page.goto(page.url(), { waitUntil: "networkidle" });
+    // console.log("requests: ", requests);
 
-    log.info(`Captured ${requests.length} network requests`);
+    // log.info(`Captured ${requests.length} network requests`);
   },
   // Recommended browser settings
   browserPoolOptions: {
