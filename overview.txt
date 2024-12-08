@@ -1,0 +1,5 @@
+I am building a crawler that will scrape data from merolagani.com.
+I am using playwright crawler. 
+I want to analyze the network requests and responses. 
+I want to extract the stock data from the response. 
+I want to store the data in a json file.
