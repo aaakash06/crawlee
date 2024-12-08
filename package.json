@@ -4,9 +4,9 @@
   "description": "",
   "main": "api.js",
   "scripts": {
-    "start": "npx tsc -b && node dist/api.js",
+    "start": "npx tsc -b && node dist/main.js",
     "build": "npx tsc -b",
-    "dev": "node dist/api.js"
+    "dev": "node dist/main.js"
   },
   "keywords": [],
   "author": "",
