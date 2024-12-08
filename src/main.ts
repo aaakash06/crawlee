@@ -59,7 +59,7 @@ const crawler = new PlaywrightCrawler({
 // Run the crawler
 async function runCrawler() {
   try {
-    await crawler.run(["https://merolagani.com/"]);
+    await crawler.run(["https://merolagani.com/latestmarket.aspx"]);
 
     // After crawling, you can access the stored data
     const dataset = await Dataset.open();

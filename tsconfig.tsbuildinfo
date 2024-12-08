@@ -1,1 +1,1 @@
-{"root":["./src/api.ts","./src/index.ts","./src/main.ts","./src/scrape.ts"],"version":"5.7.2"}
+{"root":["./src/api.ts","./src/index.ts","./src/main.ts","./src/requests.ts","./src/scrape.ts"],"version":"5.7.2"}
