@@ -8,6 +8,5 @@ var options = {
 };
 request(options, function (error: any, response: any) {
   if (error) throw new Error(error);
-  console.log(response.body);
-  // fs.writeFileSync("stocks.json", response.body);
+  fs.writeFileSync("stocks.json", response.body);
 });
